@@ -1,0 +1,14 @@
+
+# Virtual Enviroment
+.venv/
+
+# Python
+__pycache__/
+
+# Var enviroment
+.env
+.env.local 
+
+# Otros
+Dev/
+
