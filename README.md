@@ -23,6 +23,14 @@ python agent_live_tools.py console (dev -> mode server)
 
 ```
 
+## Gemini: API KEY and model Gemini Live
+
+1. Crea cuenta en Google AI Studio: `https://aistudio.google.com/`
+2. Crea un proyecto en el portal.
+3. Crea una API KEY para el proyecto.
+4. Pega la api key y el model live en `.env`.
+
+
 ## LiveKit: Cloud + Self-hosted
 
 ### Cloud (recomendado)
@@ -54,6 +62,7 @@ Referencias:
 - `https://docs.livekit.io/transport/self-hosting/local/`
 
 Nota: el código del agente no cambia entre Cloud y self-hosted; cambia la infraestructura (operación, TLS, red y mantenimiento).
+
 
 ## Tools disponibles
 
