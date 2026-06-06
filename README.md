@@ -1,12 +1,12 @@
 # LIVEKIT AGENT EXAMPLE
 
-Ejemplo agente livekit console mode (console | dev) con tools.
+Ejemplo agente livekit console mode (console | dev) con tools, video, audio y texto.
 
 ## Stack
 
 - Python 3.10+
 - LiveKit Agents SDK
-- Gemini Realtime (`gemini-2.5-flash-native-audio-latest`)
+- Gemini Realtime (`gemini-2.5-flash-native-audio-latest` or `gemini-3.1-flash-live-preview`)
 
 ## Quickstart
 
@@ -20,6 +20,7 @@ cp .env.example .env or cp .env.example .env.local (Server livekit local)
 
 python agent_live_basic.py console (dev -> mode server)
 python agent_live_tools.py console (dev -> mode server)
+python agent_live_multimodal.py console (dev -> mode server)
 
 ```
 
@@ -53,8 +54,8 @@ Referencias oficiales LiveKit:
 
 1. Despliega un servidor LiveKit propio.
 2. Arranca el servidor LiveKit local siguiendo la guia oficial.
-3. Usa la URL y credenciales de ese servidor en `.env.local`.
-4. Arranca el agente basico o con tools con `python agent_live_tools.py console`.
+3. Usa la URL y credenciales de ese servidor en `.env or .env.local`.
+4. Arranca el agente basico, tools o multimodal con: `python agent_live_basic|tools|multimodal.py console`.
 
 Referencias:
 
