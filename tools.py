@@ -1,12 +1,15 @@
-import logging
-from livekit.agents import function_tool, RunContext
-import requests
-from langchain_community.tools import DuckDuckGoSearchRun
 import os
 import smtplib
+import logging
+import requests
+from livekit.agents import function_tool, RunContext
+from langchain_community.tools import DuckDuckGoSearchRun
 from email.mime.multipart import MIMEMultipart  
 from email.mime.text import MIMEText
 from typing import Optional
+from datetime import datetime
+
+from skills import get_skill_content, list_available_skills
 
 @function_tool()
 async def get_time(
@@ -123,3 +126,41 @@ async def send_email(
     except Exception as e:
         logging.error(f"Error sending email: {e}")
         return f"An error occurred while sending email: {str(e)}"
+
+
+@function_tool()
+async def list_skills(
+    context: RunContext,  # type: ignore
+) -> str:
+    """
+    List the names of all local skills available to load.
+
+    Use this only if you are unsure of the exact skill name. Normally
+    the available skills are already listed in your system prompt and
+    you can call get_skill(name) directly.
+    """
+    names = list_available_skills()
+    if not names:
+        return "No hay skills locales disponibles."
+    return "Skills disponibles: " + ", ".join(names)
+
+
+@function_tool()
+async def get_skill(
+    context: RunContext,  # type: ignore
+    skill_name: str,
+) -> str:
+    """
+    Load the full content of a local skill by name.
+
+    Use this when the user's question matches one of the skills listed
+    in your system prompt (for example 'app-estadas'). The function
+    returns the SKILL.md text so you can answer based on it.
+
+    Args:
+        skill_name: The exact name of the skill to load.
+    """
+    content = get_skill_content(skill_name)
+    if content is None:
+        return f"Skill '{skill_name}' no encontrada."
+    return content
