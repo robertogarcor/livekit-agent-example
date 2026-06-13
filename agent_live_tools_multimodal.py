@@ -1,5 +1,5 @@
 """
-Zoe-Live - Agente LiveKit con soporte de texto y audio.
+Agent-Live - Agente LiveKit con soporte de texto y audio.
 
 Variante de agent_live_tools.py con:
 Tools (get_weather, search_web, send_email, get_time), video y texto.
@@ -24,7 +24,7 @@ from tools import get_weather, search_web, send_email, get_time
 load_dotenv(".env")
 
 # Logger especifico para este modulo, reutilizable en todo el archivo.
-logger = logging.getLogger("Zoe_Live.agent_live_tools_multimodal")
+logger = logging.getLogger("Agent_Live.agent_live_tools_multimodal")
 
 
 class Assistant(Agent):
