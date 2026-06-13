@@ -28,26 +28,26 @@ class TestParseFrontMatter:
         assert _parse_front_matter("---\nname: foo") == {}
 
     def test_basic(self):
-        text = "---\nname: app-estadas\ndescription: Manual de estadas.\n---"
+        text = "---\nname: test-skill\ndescription: Skill de prueba.\n---"
         assert _parse_front_matter(text) == {
-            "name": "app-estadas",
-            "description": "Manual de estadas.",
+            "name": "test-skill",
+            "description": "Skill de prueba.",
         }
 
     def test_only_dashes(self):
         assert _parse_front_matter("---\n---") == {}
 
     def test_extra_whitespace(self):
-        text = "---\n  name:   app-estadas  \n  description:   Manual  \n---"
+        text = "---\n  name:   test-skill  \n  description:   Skill de prueba  \n---"
         assert _parse_front_matter(text) == {
-            "name": "app-estadas",
-            "description": "Manual",
+            "name": "test-skill",
+            "description": "Skill de prueba",
         }
 
     def test_colon_in_value(self):
-        text = "---\ndescription: Manual de la app de gestion de estadas.\n---"
+        text = "---\ndescription: Manual de test-skill.\n---"
         result = _parse_front_matter(text)
-        assert result["description"] == "Manual de la app de gestion de estadas."
+        assert result["description"] == "Manual de test-skill."
 
     def test_unknown_keys_are_returned(self):
         text = "---\nname: foo\nversion: 2\n---"
@@ -113,12 +113,12 @@ class TestBuildSkillsBlock:
         monkeypatch.setattr("skills.SKILLS_DIR", tmp_path)
         _make_skill(
             tmp_path,
-            "app-estadas",
-            "---\nname: app-estadas\ndescription: Manual de estadas.\n---\n# Content",
+            "test-skill",
+            "---\nname: test-skill\ndescription: Skill de prueba.\n---\n# Content",
         )
         result = build_skills_block()
         assert "## SKILLS DISPONIBLES" in result
-        assert "app-estadas: Manual de estadas." in result
+        assert "test-skill: Skill de prueba." in result
         assert "get_skill(name)" in result
 
     def test_multiple_skills(self, monkeypatch, tmp_path):
