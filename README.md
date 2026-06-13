@@ -102,7 +102,6 @@ Cuando la consulta del usuario encaja con una skill, el LLM usa la tool
 |---|---|
 | test-skill | Skill de prueba. |
 | manual-markdown | Referencia rapida de sintaxis Markdown. |
-| api-zoe-live | Endpoints y protocolo de Zoe-Live. |
 
 ### Anadir una skill
 
